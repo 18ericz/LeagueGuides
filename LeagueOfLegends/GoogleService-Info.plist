@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>690142335145-qtims6cigk279siila5fvn9a7u7uvi10.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.690142335145-qtims6cigk279siila5fvn9a7u7uvi10</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD6DCL5GhgKQatztP7TVji5FWbylilVqOk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>690142335145</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.EricZhou.LeagueOfLegends</string>
+	<key>PROJECT_ID</key>
+	<string>leagueoflegends-1840e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>leagueoflegends-1840e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:690142335145:ios:7cdcb49cb53f3ed9</string>
+	<key>DATABASE_URL</key>
+	<string>https://leagueoflegends-1840e.firebaseio.com</string>
+</dict>
+</plist>
