@@ -61,7 +61,8 @@ class DetailViewController: UIViewController {
             }
         case "ShowReview":
             let destination = segue.destination as! ReviewTableViewController
-            destination.review = review
+            destination.reviewDescription = review.title
+            destination.reviewLabel.text = review.reviews
 
             let selectedIndexPath = reviewTableView.indexPathForSelectedRow!
             destination.review = reviews.reviewArray[selectedIndexPath.row]
