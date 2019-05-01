@@ -45,6 +45,9 @@ class DetailViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.reviewTableView.reloadData()
+        reviews.loadData(reviews: reviews) {
+            self.reviewTableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,12 +62,15 @@ class DetailViewController: UIViewController {
         case "ShowReview":
             let destination = segue.destination as! ReviewTableViewController
             destination.review = review
+
             let selectedIndexPath = reviewTableView.indexPathForSelectedRow!
             destination.review = reviews.reviewArray[selectedIndexPath.row]
         default:
             print("ERROR Did not have a segue in spotData")
         }
     }
+    
+    
     func updateUserInterface() {    
         healthLabel.text = "\(champDetail.health)"
         armorLabel.text = "\(champDetail.armor)"

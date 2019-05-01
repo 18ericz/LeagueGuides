@@ -43,7 +43,7 @@ class Review {
         let currentUserID = Auth.auth().currentUser?.email ?? "unknown User"
         self.init(email: "", title: "", review: "", reviewUserID: currentUserID, documentID: "")
     }
-    func saveData(completed: @escaping(Bool) -> ()) {
+    func saveData(review: Review, completed: @escaping(Bool) -> ()) {
         let db = Firestore.firestore()
         
         guard let reviewUserID = (Auth.auth().currentUser?.uid) else {
@@ -74,65 +74,19 @@ class Review {
             
         }
         
+        
     }
     
-    
-    
-
-
-
-
-//class Review {
-//    var email: String
-//    var title: String
-//    var review: String
-//    var documentID: String
-//    var dictionary: [String: Any] {
-//        return ["email": email, "title":title, "review": review, "documentID": documentID]
-//    }
-//
-//    init(email: String, title: String, review: String, documentID: String){
-//        self.email = email
-//        self.title = title
-//        self.review = review
-//        self.documentID = documentID
-//    }
-//
-//    convenience init() {
-//        let currentUserID = Auth.auth().currentUser?.email ?? "Unknown"
-//
-//        self.init(email: currentUserID, title: "", review: "", documentID: "")
-//    }
-//
-//
-//    func saveData(champion: Champion , completed: @escaping (Bool) -> ()) {
-//        let db = Firestore.firestore()
-//
-//        let dataToSave = self.dictionary
-//        if self.documentID != "" {
-//            let ref = db.collection("Review").document(self.documentID).collection("reviews").document(self.documentID)
-//            ref.setData(dataToSave) { (error) in
-//                if let error = error {
-//                    print("ERROR UPDATING DOCUMENT")
-//                    completed(false)
-//                } else {
-//                    print("DOCUMENT UPDATED")
-//                    completed(true)
-//                }
-//            }
-//        } else{
-//            var ref: DocumentReference? = nil
-//            ref = db.collection("Review").document(self.documentID).collection("reviews").addDocument(data: dataToSave){error in
-//                if let error = error {
-//                    print("Error creating new document")
-//                    completed(false)
-//
-//                } else {
-//                    print("New document created")
-//                    completed(true)
-//                }
-//            }
-//        }
-//    }
-
+    func deleteData(review: Review, completed: @escaping(Bool) -> ()){
+        let db = Firestore.firestore()
+        db.collection("reviews").document(review.documentID).delete()
+            { error in
+                if let error = error {
+                    print("ERROR: deleting review documentID")
+                    completed(false)
+                }else {
+                    completed(true)
+                }
+        }
+    }
 }

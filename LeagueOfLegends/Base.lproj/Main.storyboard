@@ -317,7 +317,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="reviewLabel" destination="cem-Ex-vcX" id="tEW-rN-8Xg"/>
-                                            <outlet property="titleLabel" destination="cem-Ex-vcX" id="rmA-6f-2Kb"/>
+                                            <outlet property="titleLabel" destination="C5g-Cm-uOn" id="qve-DB-l40"/>
                                             <segue destination="Mwk-7a-Qtp" kind="show" identifier="ShowReview" id="Ifi-1l-oUv"/>
                                         </connections>
                                     </tableViewCell>

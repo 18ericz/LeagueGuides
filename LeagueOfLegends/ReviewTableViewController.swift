@@ -19,7 +19,8 @@ class ReviewTableViewController: UITableViewController {
     
     var champion: Champion!
     var review: Review!
-    
+    var reviewTitle: String!
+    var reviewDescription: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,23 @@ class ReviewTableViewController: UITableViewController {
     }
 
     func updateUserInterface(){
-        emailLabel.text = review.reviewUserID
+        emailLabel.text = review.email
         reviewTitleLabel.text = review.title
+
+        enableDisableSaveButton()
         reviewLabel.text = review.reviews
-    }
+
+        if review.reviewUserID == Auth.auth().currentUser?.email {
+            self.navigationItem.leftItemsSupplementBackButton = false
+            saveBarButton.title = "update"
+            deleteButton.isHidden = false
+        } else{
+            cancelBarButton.title = ""
+            saveBarButton.title = ""
+            emailLabel.text = "\(review.reviewUserID)"
+                
+            }
+        }
     
     func leaveViewController() {
         let isPresentingInAddMode = presentingViewController is UINavigationController
@@ -43,14 +57,24 @@ class ReviewTableViewController: UITableViewController {
 
             navigationController?.popViewController(animated: true)
         }
+        
+    }
+    func enableDisableSaveButton() {
+        if reviewTitleLabel.text != "" {
+            saveBarButton.isEnabled = true
+        } else {
+            saveBarButton.isEnabled = false
+        }
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        review.saveData { success in
+        review.title = reviewTitleLabel.text!
+        review.reviews = reviewLabel.text!
+        review.saveData(review: review) { (success) in
             if success {
                 self.leaveViewController()
-            }else {
-                print("*** ERROR COULDNT LEAVE VIEW CONTROLLER")
+            } else {
+                print("ERROR")
             }
         }
         // Data could not be parsed through to view controllers..
@@ -59,9 +83,17 @@ class ReviewTableViewController: UITableViewController {
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         leaveViewController()
     }
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {	
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        review.deleteData(review: review) { (success) in
+            if success {
+                self.leaveViewController()
+            } else {
+                print("ERROR")
+            }
+        }
     }
     @IBAction func reviewTitleChanged(_ sender: Any) {
+        enableDisableSaveButton()
     }
     @IBAction func returnTitleDonePressed(_ sender: UITextField) {
     }

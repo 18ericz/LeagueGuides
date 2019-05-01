@@ -16,7 +16,7 @@ class Reviews{
     init(){
         db = Firestore.firestore()
     }
-    func loadData(completed: @escaping ()->()) {
+    func loadData(reviews: Reviews, completed: @escaping ()->()) {
         db.collection("reviews").addSnapshotListener {(querySnapshot, error) in
             guard error == nil else {
                 print("ERROR")
