@@ -46,6 +46,9 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.reviewTableView.reloadData()
         reviews.loadData(reviews: reviews) {
+            for i in self.reviews.reviewArray {
+                print("*** \(i.title)")
+            }
             self.reviewTableView.reloadData()
         }
     }
@@ -61,10 +64,12 @@ class DetailViewController: UIViewController {
             }
         case "ShowReview":
             let destination = segue.destination as! ReviewTableViewController
-            destination.reviewDescription = review.title
-            destination.reviewLabel.text = review.reviews
-
             let selectedIndexPath = reviewTableView.indexPathForSelectedRow!
+        
+            destination.reviewTitle = reviews.reviewArray[selectedIndexPath.row].title
+            destination.reviewReviews = reviews.reviewArray[selectedIndexPath.row].reviews
+
+            
             destination.review = reviews.reviewArray[selectedIndexPath.row]
         default:
             print("ERROR Did not have a segue in spotData")

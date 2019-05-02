@@ -21,6 +21,7 @@ class ReviewTableViewController: UITableViewController {
     var review: Review!
     var reviewTitle: String!
     var reviewDescription: String!
+    var reviewReviews: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,11 @@ class ReviewTableViewController: UITableViewController {
 
     func updateUserInterface(){
         emailLabel.text = review.email
-        reviewTitleLabel.text = review.title
+        print("**** \(reviewTitle)")
+        reviewTitleLabel.text = reviewTitle
 
         enableDisableSaveButton()
-        reviewLabel.text = review.reviews
+        reviewLabel.text = reviewReviews
 
         if review.reviewUserID == Auth.auth().currentUser?.email {
             self.navigationItem.leftItemsSupplementBackButton = false
